@@ -1,0 +1,27 @@
+{
+  "name": "binary-humming/hsai",
+  "description": "HHVM simple application interface",
+  "version": "0.1.0",
+  "type": "library",
+  "keywords": [
+    "framework",
+    "hacklang",
+    "hhvm"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Binary Humming",
+      "homepage": "https://github.com/binary-humming"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "4.5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "HSAI\\": "framework",
+      "Tests\\": "tests"
+    }
+  }
+}
