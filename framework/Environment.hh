@@ -2,15 +2,6 @@
 
 namespace HSAI;
 
-use \WI\EnvironmentInterface;
-use \WI\RequestInterface;
-use \WI\ResponseInterface;
-use \WI\ConfigurationInterface;
-use \WI\ServiceInterface;
-
-use \WI\Web\Request;
-use \WI\Web\Response;
-
 class Environment implements EnvironmentInterface
 {
 
@@ -35,7 +26,7 @@ class Environment implements EnvironmentInterface
     return $this;
   }
 
-  public function getRequest(): Request
+  public function getRequest(): RequestInterface
   {
     return $this->request;
   }
@@ -47,7 +38,7 @@ class Environment implements EnvironmentInterface
     return $this;
   }
 
-  public function getResponse(): Response
+  public function getResponse(): ResponseInterface
   {
     return $this->response;
   }

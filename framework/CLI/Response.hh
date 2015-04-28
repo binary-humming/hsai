@@ -1,6 +1,6 @@
 <?hh //strict
 
-namespace HSAI\Web;
+namespace HSAI\CLI;
 
 use \HSAI\ResponseInterface;
 
@@ -9,13 +9,6 @@ class Response implements ResponseInterface
 
     // The content of the request body
     protected string $body = '';
-
-    // A map with the requested headers
-    protected Map $headers;
-
-    protected string $statusCode = 200;
-
-    protected string $satatusCodeMessage = 'OK';
 
 	protected object $bodyObject;
 

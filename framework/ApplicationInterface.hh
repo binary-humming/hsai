@@ -1,6 +1,6 @@
 <?hh //strict
 
-namespace WI;
+namespace HSAI;
 
 interface ApplicationInterface
 {

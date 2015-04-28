@@ -1,8 +1,8 @@
 <?hh //strict
 
-namespace WI\Web;
+namespace HSAI\Web;
 
-use WI\RequestInterface;
+use \HSAI\RequestInterface;
 
 class Request implements RequestInterface
 {

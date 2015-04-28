@@ -1,9 +1,9 @@
 <?hh // strict
 
-namespace WI\Components\Web;
+namespace HSAI\Components\Web;
 
-use \WI\AbstractComponent;
-use \WI\EnvironmentInterface;
+use \HSAI\AbstractComponent;
+use \HSAI\EnvironmentInterface;
 
 class RequestBuilder extends AbstractComponent
 {

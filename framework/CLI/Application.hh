@@ -1,9 +1,9 @@
 <?hh //strict
 
-namespace HSAI\Web;
+namespace HSAI\CLI;
 
-use HSAI\AbstractApplication;
-use HSAI\Environment;
+use \HSAI\AbstractApplication;
+use \HSAI\Environment;
 
 class Application extends AbstractApplication
 {
@@ -12,7 +12,7 @@ class Application extends AbstractApplication
     {
       $request = new Request();
       $response = new Response();
-      $response->setBody('Hello World!, Time: '.time(),"\n");
+      $response->setBody('Hello World!, Time: '.time()."\n");
 
       $this->environment = new Environment();
       $this->environment
@@ -27,13 +27,6 @@ class Application extends AbstractApplication
         ;
 
         return $this;
-    }
-
-    public function useRequestBuilderComponent(): Application
-    {
-    	$this->useComponent('\\WI\\Components\\Web\\RequestBuilder');
-
-    	return $this;
     }
 
 	public function getOutPut(): string
