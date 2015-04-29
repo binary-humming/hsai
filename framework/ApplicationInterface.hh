@@ -2,15 +2,33 @@
 
 namespace HSAI;
 
+/**
+ * Interface ApplicationInterface
+ *
+ * @package HSAI
+ */
 interface ApplicationInterface
 {
 
-	public function initialize(): ApplicationInterface;
+	/**
+	 * Runs the application and makes sure to invoke the first component in the pipeline.
+	 *
+	 * @return $this
+	 */
+    public function run(): ApplicationInterface;
 
-    public function run(): void;
+	/**
+	 * Returns the application environment object
+	 *
+	 * @return EnvironmentInterface|null
+	 */
+    public function getEnvironment();
 
-    public function getOutPut(): string;
-
-    public function getEnvironment(): EnvironmentInterface;
+	/**
+	 * Returns the application generated content
+	 *
+	 * @return string
+	 */
+	public function getOutPut(): string;
 
 }

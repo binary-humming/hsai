@@ -5,8 +5,8 @@ namespace HSAI;
 /**
  * Interface ComponentInterface
  *
- * A component is a piece of code that runs within the pipeline.
- * His responsibilities are to implement the [invoke] method and to make sure the next component runs by executing [next] method.
+ * A component is a piece of code that runs within the application pipeline.
+ * His responsibilities are to implement the [invoke] method and to make sure the next component in the pipeline runs by executing [next] method.
  *
  * @package HSAI
  */
@@ -27,7 +27,7 @@ interface ComponentInterface
 	 *
 	 * @return ComponentInterface|null
 	 */
-	public function getNext(): ComponentInterface;
+	public function getNext();
  
 	/**
 	 * Calls the next component in the pipeline

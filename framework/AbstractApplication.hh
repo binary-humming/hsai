@@ -2,6 +2,11 @@
 
 namespace HSAI;
 
+/**
+ * Class AbstractApplication
+ *
+ * @package HSAI
+ */
 abstract class AbstractApplication implements ApplicationInterface
 {
 
@@ -11,14 +16,13 @@ abstract class AbstractApplication implements ApplicationInterface
 
     protected ComponentInterface $currentComponent;
 
-    public function initialize(): Application
+	/**
+	 * Builds up the application pipeline by adding to it the components
+	 *
+	 * @param ComponentInterface $component
+	 */
+    public function useComponent(ComponentInterface $component): ApplicationInterface
     {
-        return $this;
-    }
-
-    public function useComponent(ComponentInterface $component): AbstractApplication
-    {
-
 	    if ($this->firstComponent === null) {
 		    $this->firstComponent = $component;
 		    $this->currentComponent = $component;
@@ -30,16 +34,39 @@ abstract class AbstractApplication implements ApplicationInterface
         return $this;
     }
 
-    public function run(): void
+    public function run(): ApplicationInterface
     {
-        $this->firstComponent->invoke($this->environment);
+	    if (!($this->environment instanceof EnvironmentInterface)) {
+		    throw new \InvalidArgumentException('No application environment object has been set up to pass along to the components.');
+	    }
+
+	    if ($this->firstComponent instanceof ComponentInterface) {
+		    $this->firstComponent->invoke($this->environment);
+	    } else {
+		    throw new \InvalidArgumentException('Nothing to run, there are no components in the pipeline.');
+	    }
+
+
+	    return $this;
     }
 
-    public function getEnvironment(): Map
+	/**
+	 * @return EnvironmentInterface|null
+	 */
+    public function getEnvironment()
     {
         return $this->environment;
     }
 
+	/**
+	 * Returns the first component in the pipeline
+	 *
+	 * @return ComponentInterface
+	 */
+	public function getFirstComponent(): ComponentInterface
+	{
+		return $this->firstComponent;
+	}
 }
 
 
