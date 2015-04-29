@@ -2,79 +2,85 @@
 
 namespace HSAI;
 
+/**
+ * Class Environment
+ *
+ * @package HSAI
+ */
 class Environment implements EnvironmentInterface
 {
 
-  protected Request $request;
+	protected Request $request;
 
-  protected Response $response;
+	protected Response $response;
 
-  protected Map<string, ServiceInterface> $services;
+	protected Map<string, ServiceInterface> $services;
 
-  protected Map<string, ConfigurationInterface> $configurations;
+	protected Map<string, ConfigurationInterface> $configurations;
 
-  public function __construct()
-  {
-  	$this->services = Map{};
-  	$this->configurations = Map{};
-  }
+	public function __construct()
+	{
+		$this->services = Map{};
 
-  public function setRequest(RequestInterface $request): Environment
-  {
-    $this->request = $request;
+  	    $this->configurations = Map{};
+    }
 
-    return $this;
-  }
+	public function setRequest(RequestInterface $request): Environment
+    {
+        $this->request = $request;
 
-  public function getRequest(): RequestInterface
-  {
-    return $this->request;
-  }
+        return $this;
+    }
 
-  public function setResponse(ResponseInterface $response): Environment
-  {
-    $this->response = $response;
+	public function getRequest(): RequestInterface
+    {
+		return $this->request;
+    }
 
-    return $this;
-  }
+    public function setResponse(ResponseInterface $response): Environment
+    {
+		$this->response = $response;
 
-  public function getResponse(): ResponseInterface
-  {
-    return $this->response;
-  }
+        return $this;
+    }
 
-  public function setService(string $name, ServiceInterface $service): Environment
-  {
-  	$this->services[$name] = $service;
+    public function getResponse(): ResponseInterface
+    {
+		return $this->response;
+    }
 
-  	return $this;
-  }
+    public function setService(string $name, ServiceInterface $service): Environment
+    {
+		$this->services[$name] = $service;
 
-  public function getService(string $name): ServiceInterface
-  {
-  	return $this->services->get($name);
-  }
+		return $this;
+    }
 
-  public function setConfiguration(string $name, ConfigurationInterface $configuration): Environment
-  {
-  	$this->configurations[$name] = $configuration;
+    public function getService(string $name): ServiceInterface
+    {
+		return $this->services->get($name);
+    }
 
-  	return $this;
-  }
+	public function getServices(): Map < string, ServiceInterface >
+    {
+	    return $this->services;
+    }
 
-  public function getConfiguration(string $name): ConfigurationInterface
-  {
-  	return $this->configurations->get($name);
-  }
+    public function setConfiguration(string $name, ConfigurationInterface $configuration): Environment
+    {
+		$this->configurations[ $name ] = $configuration;
 
-  public function getServices(): Map
-  {
-  	return $this->services;
-  }
+        return $this;
+    }
 
-  public function getConfigurations(): Map
-  {
-  	return $this->configurations;
-  }
+    public function getConfiguration(string $name): ConfigurationInterface
+    {
+		return $this->configurations->get($name);
+    }
+
+    public function getConfigurations(): Map < string, ConfigurationInterface >
+    {
+		return $this->configurations;
+    }
 
 }

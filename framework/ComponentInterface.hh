@@ -33,18 +33,14 @@ interface ComponentInterface
 	 * Calls the next component in the pipeline
 	 *
 	 * @param EnvironmentInterface $environment
-	 *
-	 * @return null
 	 */
- 	public function next(EnvironmentInterface $environment);
+ 	public function next(EnvironmentInterface $environment): void;
 
 	/**
 	 * Executes the logic code of the component, if there is one
 	 *
-	 * @param EnvironmentInterface $dictionary
-	 *
-	 * @return null
+	 * @param EnvironmentInterface $environment
 	 */
- 	public function invoke(EnvironmentInterface $dictionary);
+ 	public function invoke(EnvironmentInterface $environment): void;
 
 }

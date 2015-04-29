@@ -5,7 +5,7 @@ namespace HSAI;
 /**
  * Interface ServiceInterface
  *
- * A service is a code encapsulation for utilities, reusable classes and application external logic classes
+ * An interface to encapsulate utilities, reusable classes and application related classes
  *
  * @package HSAI
  */

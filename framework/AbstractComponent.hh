@@ -15,36 +15,17 @@ abstract class AbstractComponent implements ComponentInterface
 
 	private ComponentInterface $next;
 
-	/**
-	 * Sets the next component in the pipeline to be executed
-	 *
-	 * @param ComponentInterface $next
-	 *
-	 * @return $this
-	 */
 	public function setNext(ComponentInterface $next)
 	{
 		$this->next = $next;
 	}
 
-	/**
-	 * Returns the next component to be executed in the pipeline
-	 *
-	 * @return ComponentInterface|null
-	 */
 	public function getNext(): ComponentInterface
 	{
 		return $this->next;
 	}
 
-	/**
-	 * Calls the next component in the pipeline, if there is one
-	 *
-	 * @param EnvironmentInterface $environment
-	 *
-	 * @return null
-	 */
-	public function next(\HSAI\EnvironmentInterface $environment)
+	public function next(\HSAI\EnvironmentInterface $environment): void
 	{
 		if ($this->next instanceof ComponentInterface) {
 			$this->next->invoke($environment);
