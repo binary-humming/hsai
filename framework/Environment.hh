@@ -32,7 +32,7 @@ class Environment implements EnvironmentInterface
         return $this;
     }
 
-	public function getRequest(): RequestInterface
+	public function getRequest()
     {
 		return $this->request;
     }
@@ -44,7 +44,7 @@ class Environment implements EnvironmentInterface
         return $this;
     }
 
-    public function getResponse(): ResponseInterface
+    public function getResponse()
     {
 		return $this->response;
     }
@@ -56,7 +56,7 @@ class Environment implements EnvironmentInterface
 		return $this;
     }
 
-    public function getService(string $name): ServiceInterface
+    public function getService(string $name)
     {
 		return $this->services->get($name);
     }
@@ -73,7 +73,7 @@ class Environment implements EnvironmentInterface
         return $this;
     }
 
-    public function getConfiguration(string $name): ConfigurationInterface
+    public function getConfiguration(string $name)
     {
 		return $this->configurations->get($name);
     }

@@ -7,10 +7,9 @@ use \HSAI\ResponseInterface;
 class Response implements ResponseInterface
 {
 
-    // The content of the request body
     protected string $body = '';
 
-	protected object $bodyObject;
+	protected \sdtClass $bodyObject;
 
 	public function __construct()
 	{
@@ -41,10 +40,9 @@ class Response implements ResponseInterface
 		return $this->bodyObject;
 	}
 
-    public function toString(): string
+	public function toString(): string
     {
-        return $this->body;
+	    return $this->body;
     }
-
 
 }

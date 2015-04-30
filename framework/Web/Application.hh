@@ -5,6 +5,11 @@ namespace HSAI\Web;
 use HSAI\AbstractApplication;
 use HSAI\Environment;
 
+/**
+ * Class Application
+ *
+ * @package HSAI\Web
+ */
 class Application extends AbstractApplication
 {
 
@@ -12,7 +17,7 @@ class Application extends AbstractApplication
     {
       $request = new Request();
       $response = new Response();
-      $response->setBody('Hello World!, Time: '.time(),"\n");
+      $response->setBody("'Hello World!\n");
 
       $this->environment = new Environment();
       $this->environment

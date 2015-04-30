@@ -17,7 +17,7 @@ class Response implements ResponseInterface
 
     protected string $satatusCodeMessage = 'OK';
 
-	protected object $bodyObject;
+	protected \stdClass $bodyObject;
 
 	public function __construct()
 	{

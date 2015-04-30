@@ -18,8 +18,6 @@ abstract class AbstractApplication implements ApplicationInterface
 
 	/**
 	 * Builds up the application pipeline by adding to it the components
-	 *
-	 * @param ComponentInterface $component
 	 */
     public function useComponent(ComponentInterface $component): ApplicationInterface
     {
@@ -50,9 +48,6 @@ abstract class AbstractApplication implements ApplicationInterface
 	    return $this;
     }
 
-	/**
-	 * @return EnvironmentInterface|null
-	 */
     public function getEnvironment()
     {
         return $this->environment;
@@ -60,8 +55,6 @@ abstract class AbstractApplication implements ApplicationInterface
 
 	/**
 	 * Returns the first component in the pipeline
-	 *
-	 * @return ComponentInterface
 	 */
 	public function getFirstComponent(): ComponentInterface
 	{
