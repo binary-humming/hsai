@@ -25,25 +25,16 @@ class Application extends AbstractApplication
         ->setResponse($response);
     }
 
-    public function useStandardComponents(): Application
-    {
-        $this
-            ->useRequestBuilderComponent()
-        ;
-
-        return $this;
-    }
-
     public function useRequestBuilderComponent(): Application
     {
-    	$this->useComponent('\\WI\\Components\\Web\\RequestBuilder');
+    	$this->useComponent(new \HSAI\Web\Components\RequestBuilder());
 
     	return $this;
     }
 
 	public function getOutPut(): string
 	{
-		return (string) $this->environment->getResponse()->toString();
+		return (string) $this->environment->getResponse();
 	}
 
 }

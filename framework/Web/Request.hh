@@ -7,6 +7,9 @@ use \HSAI\RequestInterface;
 class Request implements RequestInterface
 {
 
+	// A unique identifier for the request.
+	protected string $id = '';
+
 	// The content of the request body
 	protected string $body = '';
 
@@ -31,14 +34,23 @@ class Request implements RequestInterface
 	// A string containing the URI scheme used for the request (e.g., "http", "https"); see URI Scheme.
 	protected string $scheme = '';
 
-	// A unique identifier for the request.
-	protected string $id = '';
-
-
 	public function __construct()
 	{
 		$this->headers = [];
+		$this->cookies = [];
 	}
+
+	public function setId(string $id): Request
+    {
+		$this->id = $id;
+
+	    return $this;
+    }
+
+	public function getId(): string
+    {
+	    return $this->id;
+    }
 
 	public function setBody(string $body): Request
 	{
@@ -90,6 +102,18 @@ class Request implements RequestInterface
 	    return $this;
     }
 
+	public function getCookies(): array
+    {
+	    return $this->cookies;
+    }
+
+	public function setCookie(string $name, string $value): Request
+    {
+	    $this->cookies[$name] = $value;
+
+	    return $this;
+    }
+
     public function getCookie(string $cookie)
 	{
 		if (isset($this->cookies[$cookie])) {
@@ -98,11 +122,6 @@ class Request implements RequestInterface
 
 		return null;
 	}
-
-    public function getCookies(): array
-    {
-	    return $this->cookies;
-    }
 
     public function setMethod(string $method): Request
     {
@@ -162,18 +181,6 @@ class Request implements RequestInterface
     public function getScheme(): string
     {
 		return $this->scheme;
-    }
-
-    public function setId(string $id): Request
-    {
-		$this->id = $id;
-
-	    return $this;
-    }
-
-    public function getId(): string
-    {
-		return $this->id;
     }
 
 }

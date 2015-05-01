@@ -7,17 +7,17 @@ use \HSAI\ResponseInterface;
 class Response implements ResponseInterface
 {
 
-    // The content of the request body
     protected string $body = '';
 
-    // A map with the requested headers
+	protected \stdClass $bodyObject;
+
     protected Map $headers;
+
+	protected Map $cookies;
 
     protected string $statusCode = 200;
 
     protected string $satatusCodeMessage = 'OK';
-
-	protected \stdClass $bodyObject;
 
 	public function __construct()
 	{
@@ -48,10 +48,9 @@ class Response implements ResponseInterface
 		return $this->bodyObject;
 	}
 
-    public function toString(): string
+    public function __toString(): string
     {
         return $this->body;
     }
-
 
 }

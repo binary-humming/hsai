@@ -2,7 +2,6 @@
 
 namespace Tests\CLI;
 
-
 use HSAI\CLI\Request;
 
 class RequestTest extends \PHPUnit_Framework_TestCase

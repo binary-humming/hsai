@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace HSAI\Components\Web;
+namespace HSAI\Web\Components;
 
 use \HSAI\AbstractComponent;
 use \HSAI\EnvironmentInterface;
