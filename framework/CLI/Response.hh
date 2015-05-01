@@ -7,42 +7,42 @@ use \HSAI\ResponseInterface;
 class Response implements ResponseInterface
 {
 
-    protected string $body = '';
+    protected string $content = '';
 
-	protected \sdtClass $bodyObject;
+	protected \sdtClass $contentObject;
 
 	public function __construct()
 	{
 		$this->bodyObject = new \stdClass();
 	}
 
-    public function setBody(string $body): Response
+    public function setContent(string $content): Response
     {
-        $this->body = $body;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getBody(): string
+    public function getContent(): string
     {
-        return $this->body;
+        return $this->content;
     }
 
-	public function setBodyObject(\stdClass $body): Response
+	public function setContentObject(\stdClass $content): Response
     {
-		$this->bodyObject = $body;
+		$this->contentObject = $content;
 
 		return $this;
 	}
 
-    public function getBodyObject(): \stdClass
+    public function getContentObject(): \stdClass
     {
-		return $this->bodyObject;
+		return $this->contentObject;
 	}
 
-	public function toString(): string
+	public function __toString(): string
     {
-	    return $this->body;
+	    return $this->content;
     }
 
 }

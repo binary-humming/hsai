@@ -13,7 +13,7 @@ class Application extends AbstractApplication
     {
       $request = new Request();
       $response = new Response();
-      $response->setBody("Hello World!\n");
+      $response->setContent("Hello World!\n");
 
       $this->environment = new Environment();
       $this->environment
@@ -30,7 +30,7 @@ class Application extends AbstractApplication
 
 	public function getOutPut(): string
 	{
-		return (string) $this->environment->getResponse()->toString();
+		return (string) $this->environment->getResponse();
 	}
 
 }
