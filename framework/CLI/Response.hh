@@ -13,7 +13,6 @@ class Response implements ResponseInterface
 
 	public function __construct()
 	{
-		$this->bodyObject = new \stdClass();
 	}
 
     public function setContent(string $content): Response
@@ -35,7 +34,7 @@ class Response implements ResponseInterface
 		return $this;
 	}
 
-    public function getContentObject(): \stdClass
+    public function getContentObject()
     {
 		return $this->contentObject;
 	}

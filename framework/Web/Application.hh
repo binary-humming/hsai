@@ -32,6 +32,13 @@ class Application extends AbstractApplication
     	return $this;
     }
 
+	public function useResponseBuilderComponent(): Application
+    {
+	    $this->useComponent(new \HSAI\Web\Components\ResponseBuilder());
+
+	    return $this;
+    }
+
 	public function getOutPut(): string
 	{
 		return (string) $this->environment->getResponse();

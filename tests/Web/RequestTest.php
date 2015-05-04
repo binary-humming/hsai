@@ -33,7 +33,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 	{
 		$request = new Request();
 
-		$headers = array('Content-Length' => '100', 'Content-Type' => 'application/x-www-form-urlencoded');
+		$headers = Map{'Content-Length' => '100', 'Content-Type' => 'application/json'};
 
 		$request->setHeaders($headers);
 
@@ -41,19 +41,22 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
 		$request->setHeader('Host', 'localhost');
 
-		$headers = array('Content-Length' => '100', 'Content-Type' => 'application/x-www-form-urlencoded', 'Host' => 'localhost');
+		$headers = Map{'Content-Length' => '100', 'Content-Type' => 'application/json', 'Host' => 'localhost'};
 		$this->assertEquals($headers, $request->getHeaders());
 		$this->assertEquals('localhost', $request->getHeader('Host'));
 
-		$request->setHeader('Content-Type', 'application/json');
-		$this->assertEquals('application/json', $request->getHeader('Content-Type'));
+		$request->setHeader('Content-Type', 'application/xml');
+		$this->assertEquals('application/xml', $request->getHeader('Content-Type'));
+
+		$this->assertEquals('', $request->getHeader('User'));
+		$this->assertEquals('DefaultValue', $request->getHeader('USer', 'DefaultValue'));
 	}
 
 	public function testSettingAndGettingCookies()
 	{
 		$request = new Request();
 
-		$cookies = array('UserId' => '123', 'UserVisitedPages' => '1,2,4,6');
+		$cookies = Map{'UserId' => '123', 'UserVisitedPages' => '1,2,4,6'};
 
 		$request->setCookies($cookies);
 
@@ -61,12 +64,15 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
 		$request->setCookie('UserPreferredFlavours', 'chocolate');
 
-		$cookies = array('UserId' => '123', 'UserVisitedPages' => '1,2,4,6', 'UserPreferredFlavours' => 'chocolate');
+		$cookies = Map{'UserId' => '123', 'UserVisitedPages' => '1,2,4,6', 'UserPreferredFlavours' => 'chocolate'};
 		$this->assertEquals($cookies, $request->getCookies());
 		$this->assertEquals('chocolate', $request->getCookie('UserPreferredFlavours'));
 
-		$request->setHeader('UserVisitedPages', '1,2,4,6,7');
-		$this->assertEquals('1,2,4,6,7', $request->getHeader('UserVisitedPages'));
+		$request->setCookie('UserPreferredFlavours', 'vanilla');
+		$this->assertEquals('vanilla', $request->getCookie('UserPreferredFlavours'));
+
+		$this->assertEquals('', $request->getCookie('UserPreferredRestos'));
+		$this->assertEquals('DefaultValue', $request->getCookie('UserPreferredRestos', 'DefaultValue'));
 	}
 
 	public function testSettingAndGettingMethod()

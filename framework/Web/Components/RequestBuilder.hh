@@ -14,10 +14,22 @@ class RequestBuilder extends AbstractComponent
 
 		$body = file_get_contents('php://input');
 
+		$headers = Map{};
+
+		foreach (getallheaders() as $header => $value) {
+			$headers[$header] = $value;
+		}
+
+		$cookies = Map{};
+
+		foreach ($_COOKIE as $cookie => $value) {
+			$cookies[$cookie] = $value;
+		}
+
 		$request
 			->setBody($body)
-			->setHeaders(getallheaders())
-			->setCookies($_COOKIE)
+			->setHeaders($headers)
+			->setCookies($cookies)
 			->setMethod($_SERVER['REQUEST_METHOD'])
 			->setPath(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))
 			->setProtocol($_SERVER['SERVER_PROTOCOL'])

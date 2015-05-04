@@ -11,17 +11,16 @@ class Response implements ResponseInterface
 
 	protected \stdClass $bodyObject;
 
-    protected Map $headers;
+	protected string $statusCode = 200;
 
-	protected Map $cookies;
+    protected Map<string, string> $headers;
 
-    protected string $statusCode = 200;
-
-    protected string $satatusCodeMessage = 'OK';
+	protected Map<string, Cookie> $cookies;
 
 	public function __construct()
 	{
-		$this->bodyObject = new \stdClass();
+		$this->headers = Map{};
+		$this->cookies = Map{};
 	}
 
     public function setBody(string $body): Response
@@ -43,9 +42,75 @@ class Response implements ResponseInterface
 		return $this;
 	}
 
-    public function getBodyObject(): \stdClass
+    public function getBodyObject()
     {
 		return $this->bodyObject;
+	}
+
+	public function setStatusCode(int $code)
+	{
+		$this->statusCode = $code;
+	}
+
+	public function getStatusCode(): int
+	{
+		return $this->statusCode;
+	}
+
+	public function setHeaders(Map<string, string> $headers): Response
+    {
+	    $this->headers = $headers;
+
+	    return $this;
+    }
+
+	public function getHeaders(): Map<satring, string>
+    {
+	    return $this->headers;
+    }
+
+	public function setHeader(string $name, string $value): Response
+    {
+	    $this->headers[$name] = $value;
+
+	    return $this;
+    }
+
+    public function getHeader(string $name, $default = '')
+	{
+		if ($this->headers->contains($name)) {
+			return $this->headers[$name];
+		}
+
+		return $default;
+	}
+
+	public function setCookies(Map<string, Cookie> $cookies): Response
+    {
+	    $this->cookies = $cookies;
+
+	    return $this;
+    }
+
+	public function getCookies(): Map<string, string>
+    {
+	    return $this->cookies;
+    }
+
+	public function setCookie(Cookie $cookie): Response
+    {
+	    $this->cookies[$cookie->getName()] = $cookie;
+
+	    return $this;
+    }
+
+    public function getCookie(string $cookieName)
+	{
+		if ($this->cookies->contains($cookieName)) {
+			return $this->cookies[$cookieName];
+		}
+
+		return null;
 	}
 
     public function __toString(): string

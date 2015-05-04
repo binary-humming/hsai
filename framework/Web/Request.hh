@@ -7,31 +7,22 @@ use \HSAI\RequestInterface;
 class Request implements RequestInterface
 {
 
-	// A unique identifier for the request.
 	protected string $id = '';
 
-	// The content of the request body
 	protected string $body = '';
 
-	// A map with the requested headers
-	protected array $headers;
+	protected Map<string, string> $headers;
 
-	// A map with the cookie
-	protected array $cookies;
+	protected Map<string, string> $cookies;
 
-	// A string containing the HTTP request method of the request (e.g., "GET", "POST").
 	protected string $method = '';
 
-	//  A string containing the request path. The path MUST be relative to the "root" of the application delegate. See Paths.
 	protected string $path = '';
 
-	// A string containing the protocol name and version (e.g. "HTTP/1.0" or "HTTP/1.1").
 	protected string $protocol = '';
 
-	// A string containing the query string component of the HTTP request URI, without the leading "?" (e.g., "foo=bar&amp;baz=quux"). The value may be an empty string.
 	protected string $query = '';
 
-	// A string containing the URI scheme used for the request (e.g., "http", "https"); see URI Scheme.
 	protected string $scheme = '';
 
 	public function __construct()
@@ -64,45 +55,42 @@ class Request implements RequestInterface
 		return $this->body;
     }
 
-    public function setHeader(string $name, string $value): Request
-    {
-		$this->headers[$name] = $value;
-
-	    return $this;
-    }
-
-    public function setHeaders(array $headers): Request
+    public function setHeaders(Map<string, string> $headers): Request
     {
 		$this->headers = $headers;
 
 		return $this;
     }
 
-	/*
-		Returns the header value if exist otherwise null
-	*/
-    public function getHeader(string $name)
+	public function getHeaders(): Map<string, string>
+    {
+	    return $this->headers;
+    }
+
+	public function setHeader(string $name, string $value): Request
+    {
+	    $this->headers[$name] = $value;
+
+	    return $this;
+    }
+
+    public function getHeader(string $name, $deafult = '')
 	{
 		if (isset($this->headers[ $name ])) {
 			return $this->headers[ $name ];
 		}
 
-		return null;
+		return $deafult;
 	}
 
-    public function getHeaders(): array
-    {
-		return $this->headers;
-    }
-
-	public function setCookies(array $cookies): Request
+	public function setCookies(Map<string, string> $cookies): Request
     {
 	    $this->cookies = $cookies;
 
 	    return $this;
     }
 
-	public function getCookies(): array
+	public function getCookies(): Map<string, string>
     {
 	    return $this->cookies;
     }
@@ -114,13 +102,13 @@ class Request implements RequestInterface
 	    return $this;
     }
 
-    public function getCookie(string $cookie)
+    public function getCookie(string $cookie, $default = '')
 	{
 		if (isset($this->cookies[$cookie])) {
 			return $this->cookies[$cookie];
 		}
 
-		return null;
+		return $default;
 	}
 
     public function setMethod(string $method): Request
