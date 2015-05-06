@@ -17,7 +17,6 @@ class Application extends AbstractApplication
     {
       $request = new Request();
       $response = new Response();
-      $response->setBody("'Hello World!\n");
 
       $this->environment = new Environment();
       $this->environment
