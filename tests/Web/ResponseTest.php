@@ -34,8 +34,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 	public function testSettingAndGettingHTTPStatus()
 	{
 		$response = new Response();
-		$response->setStatusCode(200);
+		$this->assertEquals($response, $response->setStatusCode(200));
 		$this->assertEquals(200, $response->getStatusCode());
+		$this->assertEquals($response, $response->setStatusCodeMessage('OK'));
+		$this->assertEquals('OK', $response->getStatusCodeMessage());
+		$this->assertEquals($response, $response->setStatusCode(200, 'OK'));
+		$this->assertEquals(200, $response->getStatusCode());
+		$this->assertEquals('OK', $response->getStatusCodeMessage());
 	}
 
 	public function testSettingAndGettingHeaders()
@@ -85,6 +90,17 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(null, $response->getCookie('UserPreferredRestos'));
 	}
 
+	public function testSettingAndGettingProtocolVersion()
+	{
+		$response = new Response();
+		$this->assertEquals($response, $response->setProtocolVersion(1, 1));
+		$this->assertEquals('1.1', $response->getProtocolVersion());
+		$this->assertEquals($response, $response->setProtocolVersion(1, 0));
+		$this->assertEquals('1.0', $response->getProtocolVersion());
+		$this->assertEquals($response, $response->setProtocolVersion(0, 1));
+		$this->assertEquals('0.1', $response->getProtocolVersion());
+	}
+
 	public function testCastingResponseToString()
 	{
 		$response = new Response();
@@ -94,5 +110,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 		$response->setBody($body);
 		$this->assertEquals($body, $response.'');
 	}
+
+
 
 }

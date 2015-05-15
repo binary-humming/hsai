@@ -49,7 +49,7 @@ class Environment implements EnvironmentInterface
 		return $this->response;
     }
 
-    public function setService(string $name, ServiceInterface $service): Environment
+    public function setService(string $name, $service): Environment
     {
 		$this->services[$name] = $service;
 

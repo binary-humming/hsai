@@ -13,6 +13,10 @@ class Response implements ResponseInterface
 
 	protected string $statusCode = 200;
 
+	protected string $statusCodeMessage = 'OK';
+
+	protected string $protocolVersion = '1.1'; //TODO: update unit test
+
     protected Map<string, string> $headers;
 
 	protected Map<string, Cookie> $cookies;
@@ -47,14 +51,32 @@ class Response implements ResponseInterface
 		return $this->bodyObject;
 	}
 
-	public function setStatusCode(int $code)
+	public function setStatusCode(int $code, string $message = ''): Response
 	{
 		$this->statusCode = $code;
+
+		if ($message !== '') {
+			$this->setStatusCodeMessage($message);
+		}
+
+		return $this;
 	}
 
 	public function getStatusCode(): int
 	{
 		return $this->statusCode;
+	}
+
+	public function setStatusCodeMessage(string $codeMessage): Response
+	{
+		$this->statusCodeMessage = $codeMessage;
+
+		return $this;
+	}
+
+	public function getStatusCodeMessage(): string
+	{
+		return $this->statusCodeMessage;
 	}
 
 	public function setHeaders(Map<string, string> $headers): Response
@@ -111,6 +133,18 @@ class Response implements ResponseInterface
 		}
 
 		return null;
+	}
+
+	public function setProtocolVersion(int $major, int $minor = 0): Response
+	{
+		$this->protocolVersion = $major.'.'.$minor;
+
+		return $this;
+	}
+
+	public function getProtocolVersion(): string
+	{
+		return $this->protocolVersion;
 	}
 
     public function __toString(): string

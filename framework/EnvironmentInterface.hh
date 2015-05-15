@@ -20,7 +20,7 @@ interface EnvironmentInterface
 
     public function getResponse();
 
-    public function setService(string $name, ServiceInterface $service): EnvironmentInterface;
+    public function setService(string $name, $service): EnvironmentInterface;
 
     public function getService(string $name);
 

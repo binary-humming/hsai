@@ -62,16 +62,6 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
 		$environment->setService(null, null);
 	}
 
-	/**
-	 * @expectedException \PHPUnit_Framework_Error
-	 * @expectedExceptionMessage Argument 2 passed to HSAI\Environment::setService() must implement interface HSAI\ServiceInterface, null given
-	 */
-	public function testSettingAWrongTypeOfService()
-	{
-		$environment = new Environment();
-		$environment->setService('service', null);
-	}
-
 	public function testSettingAndGettingServices()
 	{
 		$service1 = new ServiceMock();
@@ -152,7 +142,7 @@ class ResponseMock implements ResponseInterface
 
 }
 
-class ServiceMock implements ServiceInterface
+class ServiceMock
 {
 
 }
