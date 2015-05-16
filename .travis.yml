@@ -6,7 +6,7 @@ php:
 before_script:
   - composer install
 
-script: ./run-tests.sh
+
 
 after_script:
   - phpunit
