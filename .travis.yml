@@ -4,8 +4,6 @@ php:
   - hhvm
 
 before_script:
-  - pear config-set auto_discover 1
-  - pear install pear.phpunit.de/DbUnit
   - composer install
   - bin/composer install
 
